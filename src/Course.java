@@ -1,7 +1,7 @@
 public class Course {
-  String name;
-  String code;
-  String description;
+  private String name;
+  private String code;
+  private String description;
 
   public String getName() {
     return name;
@@ -25,6 +25,11 @@ public class Course {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+  
+  @Override
+  public String toString() {
+    return String.format("\ncourse name: %s\ncode: %s\n", this.name, this.code);
   }
 
   public Course(String name, String code, String description) {
