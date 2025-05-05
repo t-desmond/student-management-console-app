@@ -1,9 +1,9 @@
 public class Student {
-  String name;
-  int age;
-  int id;
-  char grade;
-  
+  private String name;
+  private int age;
+  private int id;
+  private char grade;
+
   public String getName() {
     return name;
   }
@@ -27,5 +27,12 @@ public class Student {
   }
   public void setGrade(char grade) {
     this.grade = grade;
+  }
+
+  public Student(String name, int age, char grade) {
+    this.age = age;
+    this.name = name;
+    this.grade = grade;
+    this.id++;
   }
 }
