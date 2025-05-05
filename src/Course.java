@@ -26,10 +26,16 @@ public class Course {
   public void setDescription(String description) {
     this.description = description;
   }
-  
+
   @Override
   public String toString() {
-    return String.format("\ncourse name: %s\ncode: %s\n", this.name, this.code);
+    StringBuilder course = new StringBuilder();
+
+    course.append("ID: ").append(name).append("\n");
+    course.append("Grades: ").append(code);
+    course.append("Age: ").append(description).append("\n");
+
+    return course.toString();
   }
 
   public Course(String name, String code, String description) {

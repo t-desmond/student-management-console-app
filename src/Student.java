@@ -39,7 +39,13 @@ public class Student {
 
   @Override
   public String toString() {
-    return String.format("\nid: %s\nname: %s\nage: %s\ngrade: %s\n", this.id, this.name, this.age, this.grade);
+    StringBuilder student = new StringBuilder();
+    student.append("ID: ").append(id).append("\n");
+    student.append("Name: ").append(name).append("\n");
+    student.append("Age: ").append(age).append("\n");
+    student.append("Grades: ").append(grade);
+    
+    return student.toString();
   }
 
   public String report() {
