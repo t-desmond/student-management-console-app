@@ -31,6 +31,11 @@ public class School {
     students.add(student);
   }
 
+  public static void addStudent(String name, int age) {
+    Student student = new Student(name, age);
+    students.add(student);
+  }
+
   public static void removeStudent(Student student) {
     int studentIndex = students.indexOf(student);
     students.remove(studentIndex);

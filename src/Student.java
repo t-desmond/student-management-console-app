@@ -35,4 +35,10 @@ public class Student {
     this.grade = grade;
     this.id++;
   }
+
+  public Student(String name, int age) {
+    this.age = age;
+    this.name = name;
+    this.id++;
+  }
 }
