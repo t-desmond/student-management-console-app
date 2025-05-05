@@ -3,6 +3,7 @@ public class Student {
   private int age;
   private int id;
   private char grade;
+  private static int nextId;
 
   public String getName() {
     return name;
@@ -57,12 +58,12 @@ public class Student {
     this.age = age;
     this.name = name;
     this.grade = grade;
-    this.id++;
+    this.id = nextId++;
   }
 
   public Student(String name, int age) {
     this.age = age;
     this.name = name;
-    this.id++;
+    this.id = nextId++;
   }
 }
