@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import student.Student;
+
 public class School {
   private static List<Student> students = new ArrayList<>();
   private static List<Course> courses = new ArrayList<>();
@@ -23,8 +25,7 @@ public class School {
   }
 
   public static void removeCourse(Course course) {
-    int courseIndex = courses.indexOf(course);
-    courses.remove(courseIndex);
+    courses.remove(course);
   }
 
   public static void addStudent(Student student) {
@@ -37,7 +38,6 @@ public class School {
   }
 
   public static void removeStudent(Student student) {
-    int studentIndex = students.indexOf(student);
-    students.remove(studentIndex);
+    students.remove(student);
   }
 }
