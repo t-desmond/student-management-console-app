@@ -28,15 +28,16 @@ public class Course {
   }
 
   @Override
-  public String toString() {
+public String toString() {
     StringBuilder course = new StringBuilder();
 
-    course.append("ID: ").append(name).append("\n");
-    course.append("Grades: ").append(code);
-    course.append("Age: ").append(description).append("\n");
-
+    course.append("Course Name: ").append(name).append("\n");
+    course.append("Course Code: ").append(code).append("\n");
+    course.append("Description: ").append(description).append("\n");
+    
     return course.toString();
-  }
+}
+
 
   public Course(String name, String code, String description) {
     this.name = name;
