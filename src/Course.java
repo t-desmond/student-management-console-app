@@ -43,6 +43,7 @@ public String toString() {
   public Course(String name,  String description) {
     this.name = name;
     this.description = description;
+    this.code = generateCode(name);
   }
 
   public static String generateCode(String subject) {
