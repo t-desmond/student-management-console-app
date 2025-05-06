@@ -101,7 +101,11 @@ public class App {
                 }
                 case 3 -> {
                     System.out.print("Enter student ID to remove: ");
-                    String idinput = scanner.next().trim();
+                    String idinput = scanner.nextLine().trim();
+                    if (idinput.isEmpty()) {
+                        System.out.println("ID must not be empty");
+                        continue;
+                    }
                     
                     try {
                         UUID id = UUID.fromString(idinput);
