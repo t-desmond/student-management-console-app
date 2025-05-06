@@ -7,9 +7,15 @@ import student.Grade;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the school name: ");
+        String schoolName = scanner.nextLine();
+
+        School school = new School(schoolName);
         boolean running = true;
 
-        System.out.println("WELCOME TO SCHOOL CONSOLE APP\n");
+        System.out.println("\nWelcome to " + schoolName.toUpperCase() + " School Console App\n");
+
 
         while (running) {
             System.out.println(mainMenu());
@@ -18,8 +24,8 @@ public class App {
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> handleCourses(scanner);
-                case 2 -> handleStudents(scanner);
+                case 1 -> handleCourses(scanner, school);
+                case 2 -> handleStudents(scanner, school);
                 case 0 -> {
                     System.out.println("Exiting...");
                     running = false;
@@ -60,7 +66,7 @@ public class App {
         return courseMenu.toString();
     }
 
-    public static void handleStudents(Scanner scanner) {
+    public static void handleStudents(Scanner scanner, School school) {
         boolean inStudentMenu = true;
 
         while (inStudentMenu) {
@@ -90,12 +96,12 @@ public class App {
                         grades.put(course, grade);
                     }
 
-                    School.addStudent(name, age, grades);
+                    school.addStudent(name, age, grades);
                     System.out.println("Student added.");
                 }
                 case 2 -> {
                     System.out.println("STUDENT LIST:");
-                    for (Student s : School.getStudents()) {
+                    for (Student s : school.getStudents()) {
                         System.out.println(s);
                     }
                 }
@@ -109,11 +115,11 @@ public class App {
                     
                     try {
                         UUID id = UUID.fromString(idinput);
-                        Student toRemove = School.getStudents().stream()
+                        Student toRemove = school.getStudents().stream()
                         .filter(s -> s.getId().equals(id))
                         .findFirst().orElse(null);
                     if (toRemove != null) {
-                        School.removeStudent(toRemove);
+                        school.removeStudent(toRemove);
                         System.out.println("Student removed.");
                     } else {
                         System.out.println("Student not found.");
@@ -128,7 +134,7 @@ public class App {
         }
     }
 
-    public static void handleCourses(Scanner scanner) {
+    public static void handleCourses(Scanner scanner, School school) {
         boolean inCourseMenu = true;
 
         while (inCourseMenu) {
@@ -145,23 +151,23 @@ public class App {
                     String description = scanner.nextLine();
 
                     Course course = new Course(name, description);
-                    School.addCourse(course);
+                    school.addCourse(course);
                     System.out.println("Course added.");
                 }
                 case 2 -> {
                     System.out.println("COURSE LIST:");
-                    for (Course c : School.getCourses()) {
+                    for (Course c : school.getCourses()) {
                         System.out.println(c);
                     }
                 }
                 case 3 -> {
                     System.out.print("Enter course code to remove: ");
                     String code = scanner.nextLine();
-                    Course toRemove = School.getCourses().stream()
+                    Course toRemove = school.getCourses().stream()
                         .filter(c -> c.getCode().equalsIgnoreCase(code))
                         .findFirst().orElse(null);
                     if (toRemove != null) {
-                        School.removeCourse(toRemove);
+                        school.removeCourse(toRemove);
                         System.out.println("Course removed.");
                     } else {
                         System.out.println("Course not found.");

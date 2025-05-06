@@ -6,44 +6,49 @@ import student.Grade;
 import student.Student;
 
 public class School {
-  private static List<Student> students = new ArrayList<>();
-  private static List<Course> courses = new ArrayList<>();
+  private String name;
+  private List<Student> students = new ArrayList<>();
+  private List<Course> courses = new ArrayList<>();
 
-  public static List<Student> getStudents() {
+  public List<Student> getStudents() {
     return students;
   }
 
-  public static void setStudents(List<Student> students) {
-    School.students = students;
+  public void setStudents(List<Student> students) {
+    this.students = students;
   }
 
-  public static List<Course> getCourses() {
+  public List<Course> getCourses() {
     return courses;
   }
 
-  public static void setCourses(List<Course> courses) {
-    School.courses = courses;
+  public void setCourses(List<Course> courses) {
+    this.courses = courses;
   }
 
-  public static void addCourse(Course course) {
+  public void addCourse(Course course) {
     courses.add(course);
   }
 
-  public static void removeCourse(Course course) {
+  public void removeCourse(Course course) {
     courses.remove(course);
   }
 
-  public static void addStudent(String name, int age, HashMap<String, Grade> grades) {
+  public void addStudent(String name, int age, HashMap<String, Grade> grades) {
     Student student = new Student(name, age, grades);
     students.add(student);
   }
 
-  public static void addStudent(String name, int age) {
+  public void addStudent(String name, int age) {
     Student student = new Student(name, age);
     students.add(student);
   }
 
-  public static void removeStudent(Student student) {
+  public void removeStudent(Student student) {
     students.remove(student);
+  }
+
+  public School(String name) {
+    this.name = name;
   }
 }
