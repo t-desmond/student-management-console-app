@@ -1,12 +1,12 @@
 package student;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class Student {
+  private final UUID id;
   private String name;
   private int age;
-  private int id;
   private HashMap<String, Grade> grade;
-  private static int nextId;
 
   public String getName() {
     return name;
@@ -24,12 +24,8 @@ public class Student {
     this.age = age;
   }
 
-  public int getId() {
+  public UUID getId() {
     return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public HashMap<String, Grade> getGrade() {
@@ -64,15 +60,15 @@ public class Student {
   }
 
   public Student(String name, int age, HashMap<String, Grade> grade) {
+    this.id = UUID.randomUUID();
     this.age = age;
     this.name = name;
     this.grade = grade;
-    this.id = nextId++;
   }
 
   public Student(String name, int age) {
+    this.id = UUID.randomUUID();
     this.age = age;
     this.name = name;
-    this.id = nextId++;
   }
 }
