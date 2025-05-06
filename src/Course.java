@@ -40,9 +40,8 @@ public String toString() {
 }
 
 
-  public Course(String name, String code, String description) {
+  public Course(String name,  String description) {
     this.name = name;
-    this.code = code;
     this.description = description;
   }
 
