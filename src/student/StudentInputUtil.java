@@ -35,4 +35,13 @@ public class StudentInputUtil {
     }
     return age;
   }
+
+  public static int acceptValidMenuChoice(Scanner scanner) {
+    while (!scanner.hasNextInt()) {
+      System.out.print("Enter a valid menu choice: ");
+      scanner.next();
+    }
+
+    return scanner.nextInt();
+  }
 }
