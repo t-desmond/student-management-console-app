@@ -57,7 +57,7 @@ public class Student extends Person {
     results.append("\nId: " + this.id);
     results.append("\nAge: " + this.age);
     results.append("\nGrade(s): " + this.grade);
-    results.append("\nGPA: " + this.calculateGPA() );
+    results.append("\nGPA: ").append(String.format("%.2f", this.calculateGPA())).append("\n");
 
     return results.toString();
   }
