@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class Student extends Person {
-  private HashMap<String, Grade> grade;
+  protected HashMap<String, Grade> grade;
 
   public String getName() {
     return name;
