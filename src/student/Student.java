@@ -1,30 +1,8 @@
 package student;
 import java.util.HashMap;
-import java.util.UUID;
 
 public class Student extends Person {
   protected HashMap<String, Grade> grade;
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  public void setAge(int age) {
-    this.age = age;
-  }
-
-  public UUID getId() {
-    return id;
-  }
-
   public HashMap<String, Grade> getGrade() {
     return grade;
   }
