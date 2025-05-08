@@ -1,10 +1,12 @@
 package student;
 
+import java.util.HashMap;
+
 public class GraduateStudent extends Student {
   private String thesisTitle, advisorName;
 
-  public GraduateStudent(String name, int age, String thesisTitle, String advisorName) {
-    super(name, age);
+  public GraduateStudent(String name, int age, String thesisTitle, String advisorName, HashMap<String, Grade> grades) {
+    super(name, age, grades);
     this.thesisTitle = thesisTitle;
     this.advisorName = advisorName;
   }
