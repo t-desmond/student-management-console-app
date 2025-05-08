@@ -2,10 +2,7 @@ package student;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class Student {
-  private final UUID id;
-  private String name;
-  private int age;
+public class Student extends Person {
   private HashMap<String, Grade> grade;
 
   public String getName() {
@@ -38,6 +35,10 @@ public class Student {
 
   @Override
   public String toString() {
+    return displayInfo();
+  }
+
+  public String displayInfo() {
     StringBuilder student = new StringBuilder();
     student.append("ID: ").append(id).append("\n");
     student.append("Name: ").append(name).append("\n");
@@ -60,15 +61,12 @@ public class Student {
   }
 
   public Student(String name, int age, HashMap<String, Grade> grade) {
-    this.id = UUID.randomUUID();
-    this.age = age;
-    this.name = name;
+    super(name, age);
     this.grade = grade;
   }
 
   public Student(String name, int age) {
-    this.id = UUID.randomUUID();
-    this.age = age;
-    this.name = name;
+    super(name, age);
+    this.grade = new HashMap<>();
   }
 }
