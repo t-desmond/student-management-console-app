@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import student.Grade;
 import student.Person;
@@ -47,10 +48,14 @@ public class School {
 
   public void addStudent(Person student) {
     students.add(student);
-}
+  }
 
   public void removeStudent(Person student) {
     students.remove(student);
+  }
+
+  public Person findStudent(UUID id) {
+    return this.students.stream().filter(s -> s.getId().equals(id)).findFirst().orElse(null);
   }
 
   public School(String name) {
