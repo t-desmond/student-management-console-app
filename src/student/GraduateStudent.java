@@ -32,4 +32,10 @@ public class GraduateStudent extends Student {
         "Advisor Name: " + advisorName + "\n";
   }
 
+  @Override
+  public String report() {
+    return super.report() +
+        "Thesis Title: " + thesisTitle + "\n" +
+        "Advisor: " + advisorName + "\n";
+  }
 }
