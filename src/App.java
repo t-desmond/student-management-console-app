@@ -16,12 +16,12 @@ public class App {
         School school = new School(schoolName);
         boolean running = true;
 
-        System.out.println("\nWelcome to " + schoolName.toUpperCase() + " School Console App\n");
+        System.out.println("\nWelcome to                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       " + schoolName.toUpperCase() + " School Console App\n");
 
         while (running) {
             System.out.println(mainMenu());
             System.out.print("Enter choice: ");
-            int choice = scanner.nextInt();
+            int choice = student.StudentInputUtil.acceptValidMenuChoice(scanner);
             scanner.nextLine();
 
             switch (choice) {
@@ -74,7 +74,7 @@ public class App {
         while (inStudentMenu) {
             System.out.println(studentMenu());
             System.out.print("Enter choice: ");
-            int choice = scanner.nextInt();
+            int choice = student.StudentInputUtil.acceptValidMenuChoice(scanner);
             scanner.nextLine();
 
             switch (choice) {
@@ -167,7 +167,7 @@ public class App {
         while (inCourseMenu) {
             System.out.println(courseMenu());
             System.out.print("Enter choice: ");
-            int choice = scanner.nextInt();
+            int choice = student.StudentInputUtil.acceptValidMenuChoice(scanner);
             scanner.nextLine();
 
             switch (choice) {
