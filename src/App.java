@@ -82,7 +82,7 @@ public class App {
                     System.out.print("Enter name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter age: ");
-                    int age = scanner.nextInt();
+                    int age = student.StudentInputUtil.acceptValidAge(scanner);
                     scanner.nextLine();
 
                     System.out.print("Is this a graduate student? (yes/no): ");
