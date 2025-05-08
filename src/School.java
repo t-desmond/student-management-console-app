@@ -3,18 +3,19 @@ import java.util.HashMap;
 import java.util.List;
 
 import student.Grade;
+import student.Person;
 import student.Student;
 
 public class School {
   private String name;
-  private List<Student> students = new ArrayList<>();
+  private List<Person> students = new ArrayList<>();
   private List<Course> courses = new ArrayList<>();
 
-  public List<Student> getStudents() {
+  public List<Person> getStudents() {
     return students;
   }
 
-  public void setStudents(List<Student> students) {
+  public void setStudents(List<Person> students) {
     this.students = students;
   }
 
@@ -44,7 +45,11 @@ public class School {
     students.add(student);
   }
 
-  public void removeStudent(Student student) {
+  public void addStudent(Person student) {
+    students.add(student);
+}
+
+  public void removeStudent(Person student) {
     students.remove(student);
   }
 

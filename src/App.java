@@ -1,8 +1,10 @@
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.HashMap;
-import student.Student;
 import student.Grade;
+import student.GraduateStudent;
+import student.Person;
+import student.Student;
 
 public class App {
     public static void main(String[] args) {
@@ -15,7 +17,6 @@ public class App {
         boolean running = true;
 
         System.out.println("\nWelcome to " + schoolName.toUpperCase() + " School Console App\n");
-
 
         while (running) {
             System.out.println(mainMenu());
@@ -83,25 +84,38 @@ public class App {
                     int age = scanner.nextInt();
                     scanner.nextLine();
 
-                    HashMap<String, Grade> grades = new HashMap<>();
-                    System.out.print("Enter number of subjects: ");
-                    int subjects = scanner.nextInt();
-                    scanner.nextLine();
-                    for (int i = 0; i < subjects; i++) {
-                        System.out.print("Enter course name: ");
-                        String course = scanner.nextLine();
-                        System.out.print("Enter grade (e.g., A, B_PLUS): ");
-                        String gradeInput = scanner.nextLine().toUpperCase();
-                        Grade grade = Grade.valueOf(gradeInput);
-                        grades.put(course, grade);
+                    System.out.print("Is this a graduate student? (yes/no): ");
+                    String isGrad = scanner.nextLine().trim().toLowerCase();
+
+                    if (isGrad.equals("yes")) {
+                        System.out.print("Enter thesis title: ");
+                        String thesis = scanner.nextLine();
+                        System.out.print("Enter advisor name: ");
+                        String advisor = scanner.nextLine();
+
+                        GraduateStudent grad = new GraduateStudent(name, age, thesis, advisor);
+                        school.addStudent(grad);
+                    } else {
+                        HashMap<String, Grade> grades = new HashMap<>();
+                        System.out.print("Enter number of subjects: ");
+                        int subjects = scanner.nextInt();
+                        scanner.nextLine();
+                        for (int i = 0; i < subjects; i++) {
+                            System.out.print("Enter course name: ");
+                            String course = scanner.nextLine();
+                            System.out.print("Enter grade (e.g., A, B_PLUS): ");
+                            String gradeInput = scanner.nextLine().toUpperCase();
+                            Grade grade = Grade.valueOf(gradeInput);
+                            grades.put(course, grade);
+                        }
+                        Student student = new Student(name, age, grades);
+                        school.addStudent(student);
                     }
 
-                    school.addStudent(name, age, grades);
-                    System.out.println("Student added.");
                 }
                 case 2 -> {
                     System.out.println("STUDENT LIST:");
-                    for (Student s : school.getStudents()) {
+                    for (Person s : school.getStudents()) {
                         System.out.println(s);
                     }
                 }
@@ -112,18 +126,18 @@ public class App {
                         System.out.println("ID must not be empty");
                         continue;
                     }
-                    
+
                     try {
                         UUID id = UUID.fromString(idinput);
-                        Student toRemove = school.getStudents().stream()
-                        .filter(s -> s.getId().equals(id))
-                        .findFirst().orElse(null);
-                    if (toRemove != null) {
-                        school.removeStudent(toRemove);
-                        System.out.println("Student removed.");
-                    } else {
-                        System.out.println("Student not found.");
-                    }
+                        Person toRemove = school.getStudents().stream()
+                                .filter(s -> s.getId().equals(id))
+                                .findFirst().orElse(null);
+                        if (toRemove != null) {
+                            school.removeStudent(toRemove);
+                            System.out.println("Student removed.");
+                        } else {
+                            System.out.println("Student not found.");
+                        }
                     } catch (IllegalArgumentException e) {
                         System.out.println("Invalid UUID format");
                     }
@@ -164,8 +178,8 @@ public class App {
                     System.out.print("Enter course code to remove: ");
                     String code = scanner.nextLine();
                     Course toRemove = school.getCourses().stream()
-                        .filter(c -> c.getCode().equalsIgnoreCase(code))
-                        .findFirst().orElse(null);
+                            .filter(c -> c.getCode().equalsIgnoreCase(code))
+                            .findFirst().orElse(null);
                     if (toRemove != null) {
                         school.removeCourse(toRemove);
                         System.out.println("Course removed.");

@@ -38,6 +38,7 @@ public class Student extends Person {
     return displayInfo();
   }
 
+  @Override
   public String displayInfo() {
     StringBuilder student = new StringBuilder();
     student.append("ID: ").append(id).append("\n");
