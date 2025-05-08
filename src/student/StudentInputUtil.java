@@ -21,4 +21,18 @@ public class StudentInputUtil {
 
       return grades;
   }
+
+  public static int acceptValidAge(Scanner scanner) {
+    while (!scanner.hasNextInt()) {
+      System.out.print("Enter a valid age: ");
+      scanner.next();
+    }
+
+    int age = scanner.nextInt();
+    while (age <= 0) {
+      System.out.print("Age should not be less than 1: ");
+      age = scanner.nextInt();
+    }
+    return age;
+  }
 }
