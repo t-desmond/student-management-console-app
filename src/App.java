@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the school name: ");
+        System.out.print("Enter the school name: ");
         String schoolName = scanner.nextLine();
 
         School school = new School(schoolName);
@@ -53,7 +53,8 @@ public class App {
         studentMenu.append("1. Add student\n");
         studentMenu.append("2. Display all students\n");
         studentMenu.append("3. Remove student\n");
-        studentMenu.append("4. Main menu\n");
+        studentMenu.append("4. Display student report\n");
+        studentMenu.append("5. Main menu\n");
 
         return studentMenu.toString();
     }
@@ -93,21 +94,11 @@ public class App {
                         System.out.print("Enter advisor name: ");
                         String advisor = scanner.nextLine();
 
-                        GraduateStudent grad = new GraduateStudent(name, age, thesis, advisor);
+                        HashMap<String, Grade> grades = student.StudentInputUtil.inputGrades(scanner);
+                        GraduateStudent grad = new GraduateStudent(name, age, thesis, advisor, grades);
                         school.addStudent(grad);
                     } else {
-                        HashMap<String, Grade> grades = new HashMap<>();
-                        System.out.print("Enter number of subjects: ");
-                        int subjects = scanner.nextInt();
-                        scanner.nextLine();
-                        for (int i = 0; i < subjects; i++) {
-                            System.out.print("Enter course name: ");
-                            String course = scanner.nextLine();
-                            System.out.print("Enter grade (e.g., A, B_PLUS): ");
-                            String gradeInput = scanner.nextLine().toUpperCase();
-                            Grade grade = Grade.valueOf(gradeInput);
-                            grades.put(course, grade);
-                        }
+                        HashMap<String, Grade> grades = student.StudentInputUtil.inputGrades(scanner);
                         Student student = new Student(name, age, grades);
                         school.addStudent(student);
                     }
@@ -129,9 +120,7 @@ public class App {
 
                     try {
                         UUID id = UUID.fromString(idinput);
-                        Person toRemove = school.getStudents().stream()
-                                .filter(s -> s.getId().equals(id))
-                                .findFirst().orElse(null);
+                        Person toRemove = school.findStudent(id);
                         if (toRemove != null) {
                             school.removeStudent(toRemove);
                             System.out.println("Student removed.");
@@ -142,7 +131,31 @@ public class App {
                         System.out.println("Invalid UUID format");
                     }
                 }
-                case 4 -> inStudentMenu = false;
+
+                case 4 -> {
+                    System.out.print("Enter student id: ");
+                    String idInput = scanner.nextLine();
+                    if (idInput.isEmpty()) {
+                        System.out.println("ID must not be empty");
+                        continue;
+                    }
+
+                    try {
+                        UUID id = UUID.fromString(idInput);
+
+                        Person student = school.findStudent(id);
+                        if (student != null) {
+                            System.out.println(student.report());
+                        } else {
+                            System.out.println("Student not found.");
+                        }
+                    }
+                    catch(IllegalArgumentException e) {
+                        System.out.println("Invalid UUID format");
+                    }
+                }
+
+                case 5 -> inStudentMenu = false;
                 default -> System.out.println("Invalid choice.");
             }
         }
