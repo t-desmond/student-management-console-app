@@ -57,6 +57,7 @@ public class Student extends Person {
     results.append("\nId: " + this.id);
     results.append("\nAge: " + this.age);
     results.append("\nGrade(s): " + this.grade);
+    results.append("\nGPA: " + this.calculateGPA() );
 
     return results.toString();
   }
@@ -70,4 +71,16 @@ public class Student extends Person {
     super(name, age);
     this.grade = new HashMap<>();
   }
+
+  public double calculateGPA() {
+    if (grade == null || grade.isEmpty()) return 0.0;
+
+    double total = 0;
+    for (Grade g : grade.values()) {
+        total += g.toPoints();
+    }
+
+    return (double) total / grade.size(); 
+}
+
 }
