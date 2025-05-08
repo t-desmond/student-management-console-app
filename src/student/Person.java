@@ -23,6 +23,7 @@ public abstract class Person {
   }
 
   public abstract String displayInfo();
+  public abstract String report();
 
   Person(String name, int age) {
     this.id = UUID.randomUUID();
